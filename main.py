@@ -6,6 +6,7 @@ from utils.file_operations import create_m3u_file
 from azuracast.playlist import (
     find_playlist_id,
     create_playlist,
+    disable_playlist,
     clear_playlist,
     import_m3u_to_playlist,
 )
@@ -51,6 +52,9 @@ if __name__ == "__main__":
                     playlist_id = create_playlist(
                         AZURACAST_API_URL, API_KEY, STATION_ID, playlist_name
                     )
+
+                    # We need to immediately disable the playlist to prevent it looping overnight
+                    disable_playlist(playlist_id)
                 if clear_playlist(AZURACAST_API_URL, API_KEY, STATION_ID, playlist_id):
                     import_m3u_to_playlist(
                         AZURACAST_API_URL, API_KEY, STATION_ID, playlist_id, output_file
