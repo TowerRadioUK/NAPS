@@ -54,7 +54,7 @@ if __name__ == "__main__":
                     )
 
                     # We need to immediately disable the playlist to prevent it looping overnight
-                    disable_playlist(playlist_id)
+                    disable_playlist(AZURACAST_API_URL, API_KEY, STATION_ID, playlist_id)
                 if clear_playlist(AZURACAST_API_URL, API_KEY, STATION_ID, playlist_id):
                     import_m3u_to_playlist(
                         AZURACAST_API_URL, API_KEY, STATION_ID, playlist_id, output_file
